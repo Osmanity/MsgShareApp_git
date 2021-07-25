@@ -17,5 +17,13 @@ class MainActivity : AppCompatActivity() {
             Log.i("MainActivity", "Button was clicked")
             Toast.makeText(this, "Toast test", Toast.LENGTH_LONG).show()
         }
+
+        btnSendMsgToNextActivity.setOnClickListener{
+
+            val message: String = etUserMessage.text.toString()
+            Toast.makeText(this,message,Toast.LENGTH_LONG).show()
+
+
+        }
     }
 }
