@@ -21,9 +21,24 @@ class MainActivity : AppCompatActivity() {
         btnSendMsgToNextActivity.setOnClickListener{
 
             val message: String = etUserMessage.text.toString()
-            Toast.makeText(this,"Welcome "+ message,Toast.LENGTH_LONG).show()
+            //Toast.makeText(this,"Welcome "+ message,Toast.LENGTH_LONG).show()
             val intent = Intent(this, Activity2::class.java)
+
+            //Here is how to pass data to the other activity
+            intent.putExtra("User_message",  message)
+
             startActivity(intent)
+        }
+        //Here is how to share to other apps like gmail,facebook etc by using implicit intent
+        ShareBtn.setOnClickListener {
+            val message: String = etUserMessage.text.toString()
+            //Defin intent
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.putExtra(Intent.EXTRA_TEXT, message)
+            intent.type = "text/plain"
+
+            startActivity(Intent.createChooser(intent, "Share to:"))
         }
     }
 }
